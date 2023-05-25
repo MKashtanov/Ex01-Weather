@@ -1,5 +1,9 @@
 import requests
 
+def get_weather_in_plases(plases):
+    for plase in plases:
+        print(get_weather(plase))
+
 def get_weather(plase):
     url = f'https://wttr.in/{plase}'
     payload = {'nTqM': '', 'lang': 'ru'}
@@ -13,5 +17,4 @@ def get_weather(plase):
 
 if __name__ == "__main__":
     plases = ['Лондон', 'Шереметьево', 'Череповец']
-    for plase in plases:
-        print(get_weather(plase))
+    get_weather_in_plases(plases)
