@@ -1,20 +1,21 @@
 import requests
 
-def get_weather_in_plases(plases):
-    for plase in plases:
-        print(get_weather(plase))
+def print_weather_in_places(places):
+    for place in places:
+        try:
+            weather = get_weather(place)
+            print(weather)
+        except:
+            print(f'Не удалось получить погоду в {place}')
 
-def get_weather(plase):
-    url = f'https://wttr.in/{plase}'
+def get_weather(place):
+    url = f'https://wttr.in/{place}'
     payload = {'nTqM': '', 'lang': 'ru'}
-    try:
-        response = requests.get(url, params=payload)
-        response.raise_for_status()
-        return response.text
-    except:
-        return f'Не удалось получить погоду в {plase}'
+    response = requests.get(url, params=payload)
+    response.raise_for_status()
+    return response.text
 
 
 if __name__ == "__main__":
-    plases = ['Лондон', 'Шереметьево', 'Череповец']
-    get_weather_in_plases(plases)
+    places = ['Лондон', 'Шереметьево', 'Череповец']
+    print_weather_in_places(places)
