@@ -5,8 +5,10 @@ def print_weather_in_places(places):
         try:
             weather = get_weather(place)
             print(weather)
-        except:
+        except requests.HTTPError:
             print(f'Не удалось получить погоду в {place}')
+        except requests.exceptions.ConnectionError:
+            print(f'Не удалось подключиться к сайту погоды')
 
 def get_weather(place):
     url = f'https://wttr.in/{place}'
